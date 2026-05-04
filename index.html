@@ -1,1 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Joey Santes — Commercial Painting PM & Estimator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --white: #fafaf8;
+      --off-white: #f2f0eb;
+      --ink: #1a1a18;
+      --mid: #6b6b65;
+      --accent: #c8a96e;
+      --light-line: #e2dfd8;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 4rem;
+      background: rgba(250,250,248,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--light-line);
+      transition: padding 0.3s ease;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 6rem 4rem;
+    }
+
+    .hero-tag {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--mid);
+      max-width: 420px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+
+    .btn-primary {
+      padding: 0.85rem 2rem;
+      background: var(--ink);
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+
+    .btn-secondary {
+      padding: 0.85rem 2rem;
+      border: 1px solid var(--light-line);
+      color: var(--mid);
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--ink); color: var(--ink); }
+
+    .hero-right {
+      position: relative;
+      background: var(--off-white);
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards 0.5s;
+    }
+
+    .hero-right-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #e8e4db 0%, #d4cfc4 50%, #c8c1b4 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .hero-placeholder-icon {
+      width: 60px;
+      height: 60px;
+      border: 1.5px solid rgba(100,90,80,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-placeholder-icon svg { opacity: 0.4; }
+
+    .hero-placeholder p {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(80,75,65,0.5);
+    }
+
+    .hero-stat-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      display: flex;
+      border-top: 1px solid var(--light-line);
+      background: rgba(250,250,248,0.85);
+      backdrop-filter: blur(8px);
+    }
+
+    .stat-item {
+      flex: 1;
+      padding: 1.25rem 1.5rem;
+      border-right: 1px solid var(--light-line);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: 0.25rem;
+    }
+
+    /* ── SECTION SHARED ── */
+    section {
+      padding: 7rem 4rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .section-num {
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.1;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--light-line);
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--white); }
+
+    .projects-intro {
+      max-width: 560px;
+      font-size: 1rem;
+      color: var(--mid);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 3.5rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--light-line);
+    }
+
+    .project-card {
+      background: var(--white);
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-card:first-child {
+      grid-column: span 2;
+    }
+
+    .project-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--off-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-card:first-child .project-img {
+      aspect-ratio: 16/9;
+    }
+
+    .project-img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover .project-img-placeholder {
+      transform: scale(1.04);
+    }
+
+    .img-ph-1 { background: linear-gradient(145deg, #ddd8ce, #c9c2b5); }
+    .img-ph-2 { background: linear-gradient(145deg, #cfc8bc, #bdb5a6); }
+    .img-ph-3 { background: linear-gradient(145deg, #d8d3c8, #c4bdb0); }
+    .img-ph-4 { background: linear-gradient(145deg, #e2ddd4, #d0c9bb); }
+    .img-ph-5 { background: linear-gradient(145deg, #cbc4b8, #b8b0a2); }
+
+    .img-ph-icon {
+      opacity: 0.35;
+    }
+
+    .img-ph-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(60,55,45,0.5);
+    }
+
+    .project-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(to top, rgba(20,18,14,0.85) 0%, transparent 100%);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-overlay-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: #fff;
+      font-weight: 400;
+    }
+
+    .project-overlay-scope {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.08em;
+      margin-top: 0.25rem;
+    }
+
+    .project-meta {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--light-line);
+    }
+
+    .project-name {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .project-detail {
+      font-size: 0.75rem;
+      color: var(--mid);
+      letter-spacing: 0.06em;
+      margin-top: 0.2rem;
+    }
+
+    .projects-note {
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      color: var(--mid);
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--off-white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-photo-frame {
+      aspect-ratio: 3/4;
+      background: linear-gradient(155deg, #ddd8d0, #c8c0b0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      border: 1px solid var(--light-line);
+    }
+
+    .about-photo-frame svg { opacity: 0.3; }
+
+    .about-photo-frame p {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(80,75,65,0.45);
+    }
+
+    .about-content h3 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-content h3 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .about-content p {
+      font-size: 0.95rem;
+      color: var(--mid);
+      font-weight: 300;
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin: 2rem 0;
+    }
+
+    .skills-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem 2rem;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    .skill-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--ink); }
+
+    #services .section-title { color: var(--white); }
+    #services .section-num { color: var(--accent); }
+    #services .section-line { background: rgba(255,255,255,0.1); }
+
+    .services-intro {
+      max-width: 520px;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 4rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .service-card {
+      background: var(--ink);
+      padding: 2.5rem 2rem;
+      transition: background 0.25s;
+    }
+
+    .service-card:hover { background: #252520; }
+
+    .service-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--accent);
+      font-weight: 300;
+      display: block;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-name {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--white);
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-left h3 {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-left h3 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .contact-left p {
+      font-size: 0.95rem;
+      color: var(--mid);
+      line-height: 1.8;
+      font-weight: 300;
+      max-width: 380px;
+    }
+
+    .contact-info {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-info-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      min-width: 70px;
+    }
+
+    .contact-info-val {
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--light-line);
+      background: var(--off-white);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-group textarea { min-height: 120px; }
+
+    .form-submit {
+      padding: 1rem 2.5rem;
+      background: var(--ink);
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      align-self: flex-start;
+    }
+
+    .form-submit:hover { background: var(--accent); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 4rem;
+      border-top: 1px solid var(--light-line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-name {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--mid);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+
+      #home { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 6rem 1.5rem 3rem; }
+      .hero-right { min-height: 50vw; }
+      .hero-stat-bar { position: static; }
+
+      section { padding: 5rem 1.5rem; }
+
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:first-child { grid-column: span 1; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-photo-frame { aspect-ratio: 16/9; }
+
+      .services-grid { grid-template-columns: 1fr; }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#home" class="nav-logo">Joey Santes</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-left">
+      <p class="hero-tag">Estimating Expert · Project Manager · Business Developer</p>
+      <h1 class="hero-title">Precision.<br><em>From bid</em><br>to finish.</h1>
+      <p class="hero-sub">I manage commercial painting projects with the detail-obsessed discipline of an estimator and the ground-level instincts of someone who's seen every phase of the job.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-right-inner">
+        <div class="hero-placeholder img-ph-1">
+          <div class="hero-placeholder-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5a5040" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+            </svg>
+          </div>
+          <p>Add your hero project photo</p>
+        </div>
+      </div>
+      <div class="hero-stat-bar">
+        <div class="stat-item">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">$0</div>
+          <div class="stat-label">Budget Overruns</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Completed Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="projects-intro reveal">A selection of commercial painting projects I have estimated and managed, spanning office fitouts, retail, industrial facilities, hospitality, apartments and more. Whether I am working as an estimator, consultant, or PM for a general contractor or developer, my commitment is the same — doing the work diligently, clear communication, meticulous documentation, and providing a finished product that speaks for itself.</p>
+
+    <div class="projects-grid reveal">
+
+      <!-- Card 1 - Featured -->
+      <div class="project-card">
+        <div class="project-img">
+          <div class="project-img-placeholder img-ph-1">
+            <svg class="img-ph-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#5a5040" stroke-width="1.2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <span class="img-ph-label">Replace with project photo</span>
+          </div>
+          <div class="project-overlay">
+            <div class="project-overlay-title">Office Complex — Downtown</div>
+            <div class="project-overlay-scope">Interior & Exterior · 45,000 sq ft</div>
+          </div>
+        </div>
+        <div class="project-meta">
+          <div class="project-name">Office Complex — Downtown</div>
+          <div class="project-detail">Interior & Exterior · Commercial · 45,000 sq ft</div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="project-card">
+        <div class="project-img">
+          <div class="project-img-placeholder img-ph-2">
+            <svg class="img-ph-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5a5040" stroke-width="1.2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <span class="img-ph-label">Replace with project photo</span>
+          </div>
+          <div class="project-overlay">
+            <div class="project-overlay-title">Retail Center</div>
+            <div class="project-overlay-scope">Full Repaint · 22,000 sq ft</div>
+          </div>
+        </div>
+        <div class="project-meta">
+          <div class="project-name">Retail Center</div>
+          <div class="project-detail">Full Repaint · Commercial · 22,000 sq ft</div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="project-card">
+        <div class="project-img">
+          <div class="project-img-placeholder img-ph-3">
+            <svg class="img-ph-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5a5040" stroke-width="1.2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <span class="img-ph-label">Replace with project photo</span>
+          </div>
+          <div class="project-overlay">
+            <div class="project-overlay-title">Industrial Warehouse</div>
+            <div class="project-overlay-scope">Epoxy Floors & Walls · 60,000 sq ft</div>
+          </div>
+        </div>
+        <div class="project-meta">
+          <div class="project-name">Industrial Warehouse</div>
+          <div class="project-detail">Epoxy Floors & Walls · Industrial · 60,000 sq ft</div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="project-card">
+        <div class="project-img">
+          <div class="project-img-placeholder img-ph-4">
+            <svg class="img-ph-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5a5040" stroke-width="1.2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <span class="img-ph-label">Replace with project photo</span>
+          </div>
+          <div class="project-overlay">
+            <div class="project-overlay-title">Medical Office Building</div>
+            <div class="project-overlay-scope">Interior Repaint · Low-VOC Spec</div>
+          </div>
+        </div>
+        <div class="project-meta">
+          <div class="project-name">Medical Office Building</div>
+          <div class="project-detail">Interior Repaint · Low-VOC Spec · Healthcare</div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="project-card">
+        <div class="project-img">
+          <div class="project-img-placeholder img-ph-5">
+            <svg class="img-ph-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5a5040" stroke-width="1.2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <span class="img-ph-label">Replace with project photo</span>
+          </div>
+          <div class="project-overlay">
+            <div class="project-overlay-title">Multi-Story Parking Structure</div>
+            <div class="project-overlay-scope">Traffic Coating · Exterior Sealing</div>
+          </div>
+        </div>
+        <div class="project-meta">
+          <div class="project-name">Multi-Story Parking Structure</div>
+          <div class="project-detail">Traffic Coating · Exterior Sealing · Municipal</div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="projects-note reveal">📷 Replace placeholder cards with your own project photos — see the README for instructions.</p>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">About Joey</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-photo-frame reveal">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#5a5040" stroke-width="1.2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+        <p>Add your headshot here</p>
+      </div>
+
+      <div class="about-content reveal">
+        <h3>The person behind<br><em>every estimate.</em></h3>
+        <p>I'm Joey Santes, a commercial painting project manager and estimator with over a decade of hands-on experience delivering large-scale painting projects on time, on budget, and to spec. My work spans office buildings, retail centers, industrial facilities, healthcare campuses, and municipal structures.</p>
+        <p>I got into this field because I believe great results come from precision — in the bid, in the plan, and in the execution. I approach every project as a problem to be solved efficiently, with zero surprises for the client.</p>
+        <p>Whether I'm working as a PM for a general contractor or building client relationships for my own company, my commitment is the same: clear communication, meticulous documentation, and a finished product that speaks for itself.</p>
+
+        <div class="about-divider"></div>
+
+        <div class="skills-list">
+          <div class="skill-item"><div class="skill-dot"></div>Project Management</div>
+          <div class="skill-item"><div class="skill-dot"></div>Commercial Estimating</div>
+          <div class="skill-item"><div class="skill-dot"></div>Bid Preparation</div>
+          <div class="skill-item"><div class="skill-dot"></div>Subcontractor Coordination</div>
+          <div class="skill-item"><div class="skill-dot"></div>Budget & Cost Control</div>
+          <div class="skill-item"><div class="skill-dot"></div>Scheduling & Sequencing</div>
+          <div class="skill-item"><div class="skill-dot"></div>Quality Control</div>
+          <div class="skill-item"><div class="skill-dot"></div>Client Relations</div>
+          <div class="skill-item"><div class="skill-dot"></div>Spec & Submittal Review</div>
+          <div class="skill-item"><div class="skill-dot"></div>Safety Compliance</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">What I Offer</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="services-intro reveal">Whether you need a detail-driven PM on your team or an experienced estimator to win more work — here's how I can help.</p>
+
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <div class="service-name">Project Management</div>
+        <p class="service-desc">End-to-end oversight of commercial painting projects — from pre-construction coordination to punch-list closeout. I keep crews on schedule, subs accountable, and clients informed at every phase.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <div class="service-name">Estimating & Bidding</div>
+        <p class="service-desc">Accurate, competitive bids built from thorough takeoffs and real material and labor data. I prepare proposals that win work without leaving money on the table or setting unrealistic expectations.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <div class="service-name">Site Coordination</div>
+        <p class="service-desc">On-site leadership and subcontractor management that keeps painting scopes running clean alongside other trades. I resolve conflicts fast and protect your schedule.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">04</span>
+        <div class="service-name">Specification Review</div>
+        <p class="service-desc">Deep-dive review of painting specs, submittals, and product data sheets to ensure the right systems are specified, approved, and installed correctly the first time.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">05</span>
+        <div class="service-name">Budget & Cost Control</div>
+        <p class="service-desc">Proactive tracking of project costs against budget — identifying variances early and implementing corrective action before small overruns become real problems.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">06</span>
+        <div class="service-name">Consulting</div>
+        <p class="service-desc">Need a second set of eyes on a bid, a project plan, or a scope of work? I'm available for short-term consulting engagements for painting contractors and general contractors alike.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Let's Talk</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <h3>Ready to work<br><em>together?</em></h3>
+        <p>Whether you have a project that needs managing, a bid that needs winning, or you just want to connect — I'd love to hear from you. I typically respond within one business day.</p>
+
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <span class="contact-info-label">Email</span>
+            <span class="contact-info-val">jsantes@live.com</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Phone</span>
+            <span class="contact-info-val">401-954-9756</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Location</span>
+            <span class="contact-info-val">North Smithfield, RI</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">LinkedIn</span>
+            <span class="contact-info-val">linkedin.com/in/joesantes</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="jane@company.com" />
+        </div>
+        <div class="form-group">
+          <label for="company">Company / Project</label>
+          <input type="text" id="company" name="company" placeholder="ABC General Contractors" />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell me about your project or what you're looking for..."></textarea>
+        </div>
+        <button class="form-submit" type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-name">Joey Santes</div>
+    <div class="footer-copy">© 2026 Joey Santes. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Nav shrink on scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.padding =
+        window.scrollY > 60 ? '1rem 4rem' : '1.5rem 4rem';
+    });
+  </script>
+
+</body>
+</html>
