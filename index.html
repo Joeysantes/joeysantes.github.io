@@ -308,7 +308,7 @@
 
     .project-img {
       width: 100%;
-      aspect-ratio: 3/2;
+      aspect-ratio: 4/3;
       background: var(--off-white);
       display: flex;
       align-items: center;
@@ -721,15 +721,61 @@
 
 
 
+    /* ── SLIDE PANEL ── */
+    .project-card { cursor: default; }
 
+    .slide-panel {
+      grid-column: 1 / -1;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.5s ease;
+      background: var(--off-white);
+      border-top: none;
+    }
+
+    .slide-panel.open {
+      max-height: 400px;
+      border-top: 1px solid var(--light-line);
+      padding: 1.5rem;
+    }
+
+    .slide-photos {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) transparent;
+    }
+
+    .slide-photos::-webkit-scrollbar { height: 4px; }
+    .slide-photos::-webkit-scrollbar-track { background: transparent; }
+    .slide-photos::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    .slide-photo {
+      flex-shrink: 0;
+      height: 220px;
+      width: auto;
+      object-fit: cover;
+      filter: brightness(0.88) saturate(0.85) sepia(0.25);
+      transition: filter 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .slide-photo:hover {
+      filter: brightness(1) saturate(1) sepia(0);
+      transform: scale(1.02);
+    }
+
+    .project-group {
+      display: contents;
+    }
 
     .project-group:hover .slide-panel {
       max-height: 400px;
       border-top: 1px solid var(--light-line);
       padding: 1.5rem;
     }
-
-
 
 
     /* ── ANIMATIONS ── */
@@ -807,7 +853,7 @@
     </div>
     <div class="hero-right">
       <div class="hero-right-inner">
-        <img src="Thayer5.jpeg" alt="Thayer Academy" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(0.88) saturate(0.85) sepia(0.25);" />
+        <img src="Tesla.jpeg" alt="Tesla Service Center" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(0.88) saturate(0.85) sepia(0.25);" />
       </div>
       <div class="hero-stat-bar">
         <div class="stat-item">
@@ -838,107 +884,370 @@
     <div class="projects-grid reveal">
 
       <!-- Card 1 - Featured: Tesla -->
-      <div class="project-card">
-        <div class="project-img">
-          <img src="Tesla.jpeg" alt="Tesla Service Center" style="width:100%;height:100%;object-fit:cover;display:block;" />
-          <div class="project-overlay">
-            <div class="project-overlay-title">Tesla Service Center</div>
-            <div class="project-overlay-scope">Interior & Exterior Painting · Norwood, MA</div>
+      <div class="project-group" onmouseenter="openPanel('tesla')" onmouseleave="closePanel('tesla')">
+        <div class="project-card">
+          <div class="project-img">
+            <img src="Tesla.jpeg" alt="Tesla Service Center" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <div class="project-overlay">
+              <div class="project-overlay-title">Tesla Service Center</div>
+              <div class="project-overlay-scope">Full Interior & Exterior Painting · Norwood, MA</div>
+            </div>
+          </div>
+          <div class="project-meta">
+            <div class="project-name">Tesla Service Center</div>
+            <div class="project-detail">Interior & Exterior Painting · Tech/Commercial · Norwood, MA</div>
           </div>
         </div>
-        <div class="project-meta">
-          <div class="project-name">Tesla Service Center</div>
-          <div class="project-detail">Interior & Exterior · Tech/Commercial · Norwood, MA</div>
+        <div class="slide-panel" id="panel-tesla">
+          <div class="slide-photos">
+            <img class="slide-photo" src="Tesla.jpeg" alt="Tesla" />
+          </div>
         </div>
       </div>
 
       <!-- Card 2: Providence Place Mall -->
-      <div class="project-card">
-        <div class="project-img">
-          <img src="Pplace1.jpeg" alt="Providence Place Mall" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
-          <div class="project-overlay">
-            <div class="project-overlay-title">Providence Place Mall</div>
-            <div class="project-overlay-scope">Full Interior Repaint · Providence, RI</div>
+      <div class="project-group" onmouseenter="openPanel('pplace')" onmouseleave="closePanel('pplace')">
+        <div class="project-card">
+          <div class="project-img">
+            <img src="Pplace1.jpeg" alt="Providence Place Mall" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+            <div class="project-overlay">
+              <div class="project-overlay-title">Providence Place Mall</div>
+              <div class="project-overlay-scope">Full Interior Repaint · Providence, RI</div>
+            </div>
+          </div>
+          <div class="project-meta">
+            <div class="project-name">Providence Place Mall</div>
+            <div class="project-detail">Full Interior Repaint · Retail · Providence, RI</div>
           </div>
         </div>
-        <div class="project-meta">
-          <div class="project-name">Providence Place Mall</div>
-          <div class="project-detail">Full Interior Repaint · Retail · Providence, RI</div>
+        <div class="slide-panel" id="panel-pplace">
+          <div class="slide-photos">
+            <img class="slide-photo" src="Pplace1.jpeg" alt="Providence Place" />
+            <img class="slide-photo" src="IMG_7692.jpeg" alt="Providence Place" />
+            <img class="slide-photo" src="IMG_7697.jpeg" alt="Providence Place" />
+            <img class="slide-photo" src="IMG_7699.jpeg" alt="Providence Place" />
+            <img class="slide-photo" src="IMG_7686.jpeg" alt="Providence Place" />
+            <img class="slide-photo" src="IMG_7695.jpeg" alt="Providence Place" />
+            <img class="slide-photo" src="IMG_7680.jpeg" alt="Providence Place" />
+            <img class="slide-photo" src="IMG_7679.jpeg" alt="Providence Place" />
+            <img class="slide-photo" src="IMG_7607.jpeg" alt="Providence Place" />
+          </div>
         </div>
       </div>
 
       <!-- Card 3: Thayer Academy -->
-      <div class="project-card">
-        <div class="project-img">
-          <img src="Thayer1.jpeg" alt="Thayer Academy" style="width:100%;height:100%;object-fit:cover;display:block;" />
-          <div class="project-overlay">
-            <div class="project-overlay-title">Thayer Academy — Middle School</div>
-            <div class="project-overlay-scope">Full Interior & Exterior · Braintree, MA</div>
+      <div class="project-group" onmouseenter="openPanel('thayer')" onmouseleave="closePanel('thayer')">
+        <div class="project-card">
+          <div class="project-img">
+            <img src="Thayer1.jpeg" alt="Thayer Academy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <div class="project-overlay">
+              <div class="project-overlay-title">Thayer Academy — Middle School</div>
+              <div class="project-overlay-scope">Full Interior & Exterior · Braintree, MA</div>
+            </div>
+          </div>
+          <div class="project-meta">
+            <div class="project-name">Thayer Academy — Middle School</div>
+            <div class="project-detail">Interior & Exterior · Education · Braintree, MA</div>
           </div>
         </div>
-        <div class="project-meta">
-          <div class="project-name">Thayer Academy — Middle School</div>
-          <div class="project-detail">Interior & Exterior · Education · Braintree, MA</div>
+        <div class="slide-panel" id="panel-thayer">
+          <div class="slide-photos">
+            <img class="slide-photo" src="Thayer1.jpeg" alt="Thayer" />
+            <img class="slide-photo" src="Thayer5.jpeg" alt="Thayer" />
+            <img class="slide-photo" src="Thayer4.jpeg" alt="Thayer" />
+            <img class="slide-photo" src="Thayer3.jpeg" alt="Thayer" />
+            <img class="slide-photo" src="Thayer2.jpeg" alt="Thayer" />
+          </div>
         </div>
       </div>
 
       <!-- Card 4: Dana Hall -->
-      <div class="project-card">
-        <div class="project-img">
-          <img src="Dana1.jpeg" alt="Dana Hall School" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
-          <div class="project-overlay">
-            <div class="project-overlay-title">Dana Hall School</div>
-            <div class="project-overlay-scope">3-Level Renovation · Wellesley, MA</div>
+      <div class="project-group" onmouseenter="openPanel('dana')" onmouseleave="closePanel('dana')">
+        <div class="project-card">
+          <div class="project-img">
+            <img src="Dana1.jpeg" alt="Dana Hall School" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
+            <div class="project-overlay">
+              <div class="project-overlay-title">Dana Hall School</div>
+              <div class="project-overlay-scope">3-Level Renovation · Wellesley, MA</div>
+            </div>
+          </div>
+          <div class="project-meta">
+            <div class="project-name">Dana Hall School</div>
+            <div class="project-detail">Full Interior & Exterior · Education · Wellesley, MA</div>
           </div>
         </div>
-        <div class="project-meta">
-          <div class="project-name">Dana Hall School</div>
-          <div class="project-detail">Full Interior & Exterior · Education · Wellesley, MA</div>
+        <div class="slide-panel" id="panel-dana">
+          <div class="slide-photos">
+            <img class="slide-photo" src="Dana1.jpeg" alt="Dana Hall" />
+            <img class="slide-photo" src="Dana2.jpeg" alt="Dana Hall" />
+            <img class="slide-photo" src="Dana3.jpeg" alt="Dana Hall" />
+            <img class="slide-photo" src="Dana4.jpeg" alt="Dana Hall" />
+          </div>
         </div>
       </div>
 
       <!-- Card 5: Oasis at Plymouth -->
-      <div class="project-card">
-        <div class="project-img">
-          <img src="aerial-view-1-2.jpg" alt="Oasis at Plymouth" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
-          <div class="project-overlay">
-            <div class="project-overlay-title">Oasis at Plymouth</div>
-            <div class="project-overlay-scope">6 Buildings · Clubhouse & Pool · Plymouth, MA</div>
+      <div class="project-group" onmouseenter="openPanel('oasis')" onmouseleave="closePanel('oasis')">
+        <div class="project-card">
+          <div class="project-img">
+            <img src="aerial-view-1-2.jpg" alt="Oasis at Plymouth" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
+            <div class="project-overlay">
+              <div class="project-overlay-title">Oasis at Plymouth</div>
+              <div class="project-overlay-scope">6 Buildings · Clubhouse & Pool · Plymouth, MA</div>
+            </div>
+          </div>
+          <div class="project-meta">
+            <div class="project-name">Oasis at Plymouth</div>
+            <div class="project-detail">Full Interior Scope · Luxury Apartments · Plymouth, MA</div>
           </div>
         </div>
-        <div class="project-meta">
-          <div class="project-name">Oasis at Plymouth</div>
-          <div class="project-detail">Full Interior Scope · Luxury Apartments · Plymouth, MA</div>
+        <div class="slide-panel" id="panel-oasis">
+          <div class="slide-photos">
+            <img class="slide-photo" src="aerial-view-1-2.jpg" alt="Oasis" />
+            <img class="slide-photo" src="Oasis3.jpg" alt="Oasis" />
+            <img class="slide-photo" src="Oasis4.jpg" alt="Oasis" />
+            <img class="slide-photo" src="Oasis2.jpg" alt="Oasis" />
+          </div>
         </div>
       </div>
 
       <!-- Card 6: Delaney at the Vale -->
-      <div class="project-card">
-        <div class="project-img">
-          <img src="IMG_5199.jpeg" alt="Delaney at the Vale" style="width:100%;height:100%;object-fit:cover;display:block;" />
-          <div class="project-overlay">
-            <div class="project-overlay-title">Delaney at the Vale</div>
-            <div class="project-overlay-scope">300+ Units · Painting & Wallcovering · Woburn, MA</div>
+      <div class="project-group" onmouseenter="openPanel('delaney')" onmouseleave="closePanel('delaney')">
+        <div class="project-card">
+          <div class="project-img">
+            <img src="IMG_5199.jpeg" alt="Delaney at the Vale" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <div class="project-overlay">
+              <div class="project-overlay-title">Delaney at the Vale</div>
+              <div class="project-overlay-scope">300+ Units · Painting & Wallcovering · Woburn, MA</div>
+            </div>
+          </div>
+          <div class="project-meta">
+            <div class="project-name">Delaney at the Vale</div>
+            <div class="project-detail">Painting & Wallcovering · Assisted Living · Woburn, MA</div>
           </div>
         </div>
-        <div class="project-meta">
-          <div class="project-name">Delaney at the Vale</div>
-          <div class="project-detail">Painting & Wallcovering · Assisted Living · Woburn, MA</div>
+        <div class="slide-panel" id="panel-delaney">
+          <div class="slide-photos">
+            <img class="slide-photo" src="IMG_5199.jpeg" alt="Delaney" />
+            <img class="slide-photo" src="IMG_4479.jpeg" alt="Delaney" />
+            <img class="slide-photo" src="IMG_9490.jpeg" alt="Delaney" />
+            <img class="slide-photo" src="IMG_9491.jpeg" alt="Delaney" />
+            <img class="slide-photo" src="IMG_9492.jpeg" alt="Delaney" />
+            <img class="slide-photo" src="IMG_9493.jpeg" alt="Delaney" />
+          </div>
         </div>
       </div>
 
       <!-- Card 7: Milton CAT -->
-      <div class="project-card">
-        <div class="project-img">
-          <img src="Milton1.jpeg" alt="Milton CAT" style="width:100%;height:100%;object-fit:cover;display:block;" />
-          <div class="project-overlay">
-            <div class="project-overlay-title">Milton CAT</div>
-            <div class="project-overlay-scope">Full Painting Scope · Stoughton, MA</div>
+      <div class="project-group" onmouseenter="openPanel('milton')" onmouseleave="closePanel('milton')">
+        <div class="project-card">
+          <div class="project-img">
+            <img src="Milton1.jpeg" alt="Milton CAT" style="width:100%;height:100%;object-fit:cover;display:block;" />
+            <div class="project-overlay">
+              <div class="project-overlay-title">Milton CAT</div>
+              <div class="project-overlay-scope">Full Painting Scope · Stoughton, MA</div>
+            </div>
+          </div>
+          <div class="project-meta">
+            <div class="project-name">Milton CAT</div>
+            <div class="project-detail">Full Painting Scope · Industrial/Commercial · Stoughton, MA</div>
           </div>
         </div>
-        <div class="project-meta">
-          <div class="project-name">Milton CAT</div>
-          <div class="project-detail">Full Painting Scope · Industrial/Commercial · Stoughton, MA</div>
+        <div class="slide-panel" id="panel-milton">
+          <div class="slide-photos">
+            <img class="slide-photo" src="Milton1.jpeg" alt="Milton CAT" />
+            <img class="slide-photo" src="Milton_6.jpeg" alt="Milton CAT" />
+            <img class="slide-photo" src="IMG_0442.jpeg" alt="Milton CAT" />
+            <img class="slide-photo" src="IMG_0444.jpeg" alt="Milton CAT" />
+            <img class="slide-photo" src="IMG_0428.jpeg" alt="Milton CAT" />
+            <img class="slide-photo" src="IMG_9919.jpeg" alt="Milton CAT" />
+          </div>
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">About Joey</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-photo-frame reveal">
+        <img src="profile.jpeg" alt="Joey Santes" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
+      </div>
+
+      <div class="about-content reveal">
+        <h3>Meet Joey Santes.<br><em>Built on hard work.</em><br>Driven by relationships.</h3>
+        <p>I'm Joey Santes, a commercial painting estimator and project manager with over a decade of hands-on experience delivering large-scale painting projects on time, on budget, and to spec. My work spans office buildings, retail centers, industrial facilities, healthcare campuses, and municipal structures.</p>
+        <p>I got into this field because I believe great results come from precision and teamwork, building on relationships from the bid invite, to the site, and in the execution. I believe every problem can be solved with the right team around you, a clear plan, and the end result always in mind.</p>
+        <p>Whether I'm working as a PM for a general contractor or building client relationships for my own company, my commitment is the same: clear communication, meticulous documentation, and a finished product that speaks for itself.</p>
+
+        <div class="about-divider"></div>
+
+        <div class="skills-list">
+          <div class="skill-item"><div class="skill-dot"></div>Project Management</div>
+          <div class="skill-item"><div class="skill-dot"></div>Commercial Estimating</div>
+          <div class="skill-item"><div class="skill-dot"></div>Bid Preparation</div>
+          <div class="skill-item"><div class="skill-dot"></div>Subcontractor Coordination</div>
+          <div class="skill-item"><div class="skill-dot"></div>Budget & Cost Control</div>
+          <div class="skill-item"><div class="skill-dot"></div>Scheduling & Sequencing</div>
+          <div class="skill-item"><div class="skill-dot"></div>Quality Control</div>
+          <div class="skill-item"><div class="skill-dot"></div>Client Relations</div>
+          <div class="skill-item"><div class="skill-dot"></div>Spec & Submittal Review</div>
+          <div class="skill-item"><div class="skill-dot"></div>Safety Compliance</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">What I Offer</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="services-intro reveal">Whether you need a detail-driven PM on your team or an experienced estimator to win more work — here's how I can help.</p>
+
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <div class="service-name">Project Management</div>
+        <p class="service-desc">End-to-end oversight of commercial painting projects — from pre-construction coordination to punch-list closeout. I keep crews on schedule, subs accountable, and clients informed at every phase.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <div class="service-name">Estimating & Bidding</div>
+        <p class="service-desc">Accurate, competitive bids built from thorough takeoffs and real material and labor data. I prepare proposals that win work without leaving money on the table or setting unrealistic expectations.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <div class="service-name">Site Coordination</div>
+        <p class="service-desc">On-site leadership and subcontractor management that keeps painting scopes running clean alongside other trades. I resolve conflicts fast and protect your schedule.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">04</span>
+        <div class="service-name">Specification Review</div>
+        <p class="service-desc">Deep-dive review of painting specs, submittals, and product data sheets to ensure the right systems are specified, approved, and installed correctly the first time.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">05</span>
+        <div class="service-name">Budget & Cost Control</div>
+        <p class="service-desc">Proactive tracking of project costs against budget — identifying variances early and implementing corrective action before small overruns become real problems.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">06</span>
+        <div class="service-name">Consulting</div>
+        <p class="service-desc">Need a second set of eyes on a bid, a project plan, or a scope of work? I'm available for short-term consulting engagements for painting contractors and general contractors alike.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Let's Talk</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <h3>Ready to work<br><em>together?</em></h3>
+        <p>or you just want to connect — I'd love to hear from you. I typically respond within one business day.</p>
+
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <span class="contact-info-label">Email</span>
+            <span class="contact-info-val">jsantes@live.com</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Location</span>
+            <span class="contact-info-val">North Smithfield, RI</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">LinkedIn</span>
+            <span class="contact-info-val">linkedin.com/in/joesantes</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" action="https://formspree.io/f/xjglyyyr" method="POST">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="jane@company.com" />
+        </div>
+        <div class="form-group">
+          <label for="company">Company / Project</label>
+          <input type="text" id="company" name="company" placeholder="ABC General Contractors" />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell me about your project or what you're looking for..."></textarea>
+        </div>
+        <button class="form-submit" type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-name">Joey Santes</div>
+    <div class="footer-copy">© 2026 Joey Santes. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </footer>
+
+
+  <script>
+
+
+    // Slide panels
+    let closeTimer = {};
+
+    function openPanel(id) {
+      if (closeTimer[id]) { clearTimeout(closeTimer[id]); closeTimer[id] = null; }
+      const panel = document.getElementById('panel-' + id);
+      if (panel) panel.classList.add('open');
+    }
+
+    function closePanel(id) {
+      closeTimer[id] = setTimeout(() => {
+        const panel = document.getElementById('panel-' + id);
+        if (panel) panel.classList.remove('open');
+      }, 200);
+    }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Nav shrink on scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.padding =
+        window.scrollY > 60 ? '1rem 4rem' : '1.5rem 4rem';
+    });
+  </script>
+
+</body>
+</html>
