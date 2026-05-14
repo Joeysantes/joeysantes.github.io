@@ -172,39 +172,6 @@
       inset: 0;
     }
 
-    .hero-stat-bar {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      display: flex;
-      border-top: 1px solid var(--light-line);
-      background: rgba(250,250,248,0.85);
-      backdrop-filter: blur(8px);
-    }
-
-    .stat-item {
-      flex: 1;
-      padding: 1.25rem 1.5rem;
-      border-right: 1px solid var(--light-line);
-    }
-
-    .stat-item:last-child { border-right: none; }
-
-    .stat-num {
-      font-family: var(--serif);
-      font-size: 1.8rem;
-      font-weight: 500;
-      color: var(--ink);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--mid);
-      margin-top: 0.25rem;
-    }
-
     section { padding: 7rem 4rem; }
 
     .section-header {
@@ -234,6 +201,7 @@
       background: var(--light-line);
     }
 
+    /* ── PROJECTS ── */
     #projects { background: var(--white); }
 
     .projects-intro {
@@ -250,6 +218,7 @@
       flex-direction: column;
       gap: 2px;
       background: var(--light-line);
+      margin-bottom: 5rem;
     }
 
     .project-card {
@@ -340,6 +309,155 @@
       margin-top: 0.2rem;
     }
 
+    /* ── TICKER ── */
+    .ticker-section {
+      border-top: 1px solid var(--light-line);
+      padding-top: 4rem;
+    }
+
+    .ticker-section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-family: var(--sans);
+    }
+
+    .ticker-section-heading {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+    }
+
+    .ticker-wrap {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .ticker-count {
+      font-size: 0.78rem;
+      color: var(--mid);
+      letter-spacing: 0.08em;
+    }
+
+    .ticker-stage {
+      width: 100%;
+      max-width: 700px;
+      height: 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ticker-item {
+      position: absolute;
+      width: 100%;
+      left: 0; top: 0; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      opacity: 0;
+      transform: translateY(36px);
+      transition: none;
+      pointer-events: none;
+    }
+
+    .ticker-item.active {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .ticker-item.exit {
+      opacity: 0;
+      transform: translateY(-36px);
+      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.55, 0, 0.78, 0);
+    }
+
+    .ticker-project-name {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      font-weight: 400;
+      color: var(--ink);
+      text-align: center;
+      line-height: 1.2;
+      padding: 0 1rem;
+    }
+
+    .ticker-project-index {
+      font-size: 0.7rem;
+      color: var(--mid);
+      letter-spacing: 0.1em;
+    }
+
+    .ticker-progress-wrap {
+      width: 100%;
+      max-width: 700px;
+      height: 1px;
+      background: var(--light-line);
+    }
+
+    .ticker-progress-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width linear;
+    }
+
+    .ticker-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .ticker-btn {
+      background: none;
+      border: 1px solid var(--light-line);
+      color: var(--mid);
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.1rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .ticker-btn:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .ticker-dots {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 700px;
+    }
+
+    .ticker-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--light-line);
+      transition: background 0.3s, transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .ticker-dot.current {
+      background: var(--accent);
+      transform: scale(1.5);
+    }
+
+    /* ── ABOUT ── */
     #about { background: var(--off-white); }
 
     .about-grid {
@@ -403,6 +521,7 @@
       flex-shrink: 0;
     }
 
+    /* ── SERVICES ── */
     #services { background: var(--ink); }
     #services .section-title { color: var(--white); }
     #services .section-num { color: var(--accent); }
@@ -456,6 +575,7 @@
       line-height: 1.75;
     }
 
+    /* ── CONTACT ── */
     #contact { background: var(--white); }
 
     .contact-grid {
@@ -599,9 +719,7 @@
       #home { grid-template-columns: 1fr; min-height: auto; }
       .hero-left { padding: 6rem 1.5rem 3rem; }
       .hero-right { min-height: 50vw; }
-      .hero-stat-bar { position: static; }
       section { padding: 5rem 1.5rem; }
-      .projects-grid { gap: 2px; }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-photo-frame { aspect-ratio: 16/9; }
       .services-grid { grid-template-columns: 1fr; }
@@ -623,6 +741,7 @@
     </ul>
   </nav>
 
+  <!-- HOME -->
   <section id="home">
     <div class="hero-left">
       <p class="hero-tag">Estimating Expert · Project Manager · Business Developer</p>
@@ -636,30 +755,27 @@
     <div class="hero-right">
       <div class="hero-right-inner" style="display:flex;align-items:center;justify-content:center;padding:4rem;">
         <div style="width:100%;max-width:420px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--light-line);">
-
           <div style="background:var(--white);padding:2.5rem 1rem;text-align:center;">
             <div style="font-family:var(--serif);font-size:clamp(3rem,5vw,5.5rem);font-weight:300;color:var(--ink);line-height:1;">18+</div>
             <div style="width:20px;height:1px;background:var(--accent);margin:0.75rem auto;"></div>
             <div style="font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);">Years Experience</div>
           </div>
-
           <div style="background:var(--off-white);padding:2.5rem 1rem;text-align:center;">
             <div style="font-family:var(--serif);font-size:clamp(3rem,5vw,5.5rem);font-weight:300;color:var(--ink);line-height:1;">200+</div>
             <div style="width:20px;height:1px;background:var(--accent);margin:0.75rem auto;"></div>
             <div style="font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);">Projects Completed</div>
           </div>
-
           <div style="background:var(--white);padding:2.5rem 1rem;text-align:center;">
             <div style="font-family:var(--serif);font-size:clamp(3rem,5vw,5.5rem);font-weight:300;color:var(--ink);line-height:1;">50+</div>
             <div style="width:20px;height:1px;background:var(--accent);margin:0.75rem auto;"></div>
             <div style="font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);">Brands Serviced</div>
           </div>
-
         </div>
       </div>
     </div>
   </section>
 
+  <!-- PROJECTS -->
   <section id="projects">
     <div class="section-header reveal">
       <span class="section-num">01</span>
@@ -670,6 +786,7 @@
 
     <div class="projects-grid reveal">
 
+      <!-- Original 7 -->
       <div class="project-card">
         <div class="project-img">
           <img src="Tesla.jpeg" alt="Tesla Service Center" />
@@ -768,9 +885,158 @@
         </div>
       </div>
 
+      <!-- NEW 9 -->
+      <div class="project-card">
+        <div class="project-img">
+          <img src="Eleveno.jpg" alt="Eleveno" style="object-position:center;" />
+          <div class="project-overlay">
+            <div class="project-overlay-title">Eleveno</div>
+            <div class="project-overlay-scope">Full Exterior Repaint · Foxborough, MA</div>
+          </div>
+        </div>
+        <div class="project-meta">
+          <div class="project-name">Eleveno</div>
+          <div class="project-detail">Full Exterior Repaint · Retail/Commercial · Foxborough, MA</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img">
+          <img src="LawsonGreen.jpg" alt="Lawson Green Apartments" style="object-position:center;" />
+          <div class="project-overlay">
+            <div class="project-overlay-title">Lawson Green Apartments</div>
+            <div class="project-overlay-scope">Full Exterior Painting · Hingham, MA</div>
+          </div>
+        </div>
+        <div class="project-meta">
+          <div class="project-name">Lawson Green Apartments</div>
+          <div class="project-detail">Full Exterior Painting · Senior Living · Hingham, MA</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img">
+          <img src="SupplyNE.jpg" alt="Supply New England" style="object-position:center;" />
+          <div class="project-overlay">
+            <div class="project-overlay-title">Supply New England</div>
+            <div class="project-overlay-scope">Interior & Exterior · Warwick, RI</div>
+          </div>
+        </div>
+        <div class="project-meta">
+          <div class="project-name">Supply New England</div>
+          <div class="project-detail">Interior & Exterior · Commercial · Warwick, RI</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img">
+          <img src="WesterlyMuseum.jpg" alt="Westerly Museum of Art" style="object-position:center;" />
+          <div class="project-overlay">
+            <div class="project-overlay-title">Westerly Museum of Art</div>
+            <div class="project-overlay-scope">Full Exterior Scope · Westerly, RI</div>
+          </div>
+        </div>
+        <div class="project-meta">
+          <div class="project-name">Westerly Museum of Art</div>
+          <div class="project-detail">Full Exterior Scope · Cultural/Civic · Westerly, RI</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img">
+          <img src="HM.jpg" alt="H&M Providence Place Mall" style="object-position:center top;" />
+          <div class="project-overlay">
+            <div class="project-overlay-title">H&M</div>
+            <div class="project-overlay-scope">Full Interior Painting · Providence Place Mall, RI</div>
+          </div>
+        </div>
+        <div class="project-meta">
+          <div class="project-name">H&M — Providence Place Mall</div>
+          <div class="project-detail">Full Interior Painting · Retail · Providence, RI</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img">
+          <img src="WestwoodCompany.jpg" alt="Boston College Archives" style="object-position:center;" />
+          <div class="project-overlay">
+            <div class="project-overlay-title">Boston College Archives</div>
+            <div class="project-overlay-scope">Interior Renovation · Chestnut Hill, MA</div>
+          </div>
+        </div>
+        <div class="project-meta">
+          <div class="project-name">Boston College Archives</div>
+          <div class="project-detail">Interior Renovation · Education · Chestnut Hill, MA</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img">
+          <img src="WestwoodFactory.jpg" alt="Westwood Factory" style="object-position:center;" />
+          <div class="project-overlay">
+            <div class="project-overlay-title">Westwood Factory</div>
+            <div class="project-overlay-scope">Full Interior Paint & Floor Coating · Westwood, MA</div>
+          </div>
+        </div>
+        <div class="project-meta">
+          <div class="project-name">Westwood Factory</div>
+          <div class="project-detail">Full Interior Paint & Floor Coating · Industrial · Westwood, MA</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img">
+          <img src="Hopeartistevillage.jpg" alt="Hope Artiste Village" style="object-position:center;" />
+          <div class="project-overlay">
+            <div class="project-overlay-title">Hope Artiste Village</div>
+            <div class="project-overlay-scope">Full Interior Painting · Pawtucket, RI</div>
+          </div>
+        </div>
+        <div class="project-meta">
+          <div class="project-name">Hope Artiste Village</div>
+          <div class="project-detail">Full Interior Painting · Mixed-Use · Pawtucket, RI</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img">
+          <img src="Kellyblvd.jpg" alt="Alta Kelly Blvd" style="object-position:center;" />
+          <div class="project-overlay">
+            <div class="project-overlay-title">Alta Kelly Blvd</div>
+            <div class="project-overlay-scope">Full Exterior Scope · North Attleboro, MA</div>
+          </div>
+        </div>
+        <div class="project-meta">
+          <div class="project-name">Alta Kelly Blvd</div>
+          <div class="project-detail">Full Exterior Scope · Residential/Mixed-Use · North Attleboro, MA</div>
+        </div>
+      </div>
+
+    </div><!-- /projects-grid -->
+
+    <!-- TICKER -->
+    <div class="ticker-section reveal">
+      <p class="ticker-section-label">Full Portfolio</p>
+      <h3 class="ticker-section-heading">Projects Completed</h3>
+
+      <div class="ticker-wrap">
+        <span class="ticker-count" id="tickerCount"></span>
+        <div class="ticker-stage" id="tickerStage"></div>
+        <div class="ticker-progress-wrap">
+          <div class="ticker-progress-fill" id="tickerProgress"></div>
+        </div>
+        <div class="ticker-controls">
+          <button class="ticker-btn" id="tickerPrev">← Prev</button>
+          <button class="ticker-btn" id="tickerPlay">Pause</button>
+          <button class="ticker-btn" id="tickerNext">Next →</button>
+        </div>
+        <div class="ticker-dots" id="tickerDots"></div>
+      </div>
     </div>
+
   </section>
 
+  <!-- ABOUT -->
   <section id="about">
     <div class="section-header reveal">
       <span class="section-num">02</span>
@@ -803,6 +1069,7 @@
     </div>
   </section>
 
+  <!-- SERVICES -->
   <section id="services">
     <div class="section-header reveal">
       <span class="section-num">03</span>
@@ -844,6 +1111,7 @@
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact">
     <div class="section-header reveal">
       <span class="section-num">04</span>
@@ -902,6 +1170,7 @@
   </footer>
 
   <script>
+    /* ── Scroll reveal ── */
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
@@ -917,6 +1186,123 @@
       document.querySelector('nav').style.padding =
         window.scrollY > 60 ? '1rem 4rem' : '1.5rem 4rem';
     });
+
+    /* ── Ticker ── */
+    const projects = [
+      "77 Rowe Street — Newton MA","Anthropologie — Hingham MA Derby Shoppes","Antonios Pizza — Providence",
+      "Brooks Brothers — Lee MA","Charlies — Lynn MA","Ethan Allen — Cranston","Ethan Allen — Hyannis",
+      "Fatface — Newport","Finagle Bagel HQ","Residence Inn & Springhill Suites — Fishkill NY",
+      "Travelers Fitout — Warwick RI","VS Cape Cod Mall","Walgreen — Belmont Street Worcester",
+      "ZARA — Providence Place Mall","Universal Wilde — Westwood MA","31 St James — WeWork Boston",
+      "Aldi — Cranston","First Bristol Office","H&M — Providence RI","Hampton Inn & Suites — Foxboro MA",
+      "LL Bean — Mashpee MA","Medway Church","Park Holm — Newport RI","Planet Fitness — Woonsocket RI",
+      "Starbucks — Springfield MA","Vineyard Vines — Westfarms Mall CT","VS Mall of NH",
+      "VS Rebrand Store — Northshore Mall","VS Trumbull CT","Z Gallerie — Cranston",
+      "171 Service Ave — BAYADA Suite 101","AT&T — Boston MA","Chicos — Cranston",
+      "Flash Global — Warwick","Suite Supply — Newbury Street Boston MA","Chipotle — Providence",
+      "Bath & Body Works","Boston Interior","ULTA — Hingham","Suite 101 — Warwick RI",
+      "Suite 102 — Warwick RI","Landfall — Brookline MA","Target — Newington CT","Target — Lincoln RI",
+      "Citrin — Braintree","Crunch Fitness — Fall River","Eblens — Dartmouth MA",
+      "Dollar Tree — Willimantic","Eblens Exterior — Dorchester","Filson — Boston",
+      "Landfall — East Boston","Residence Inn — Stamford CT","The Price Center — Newton",
+      "Wells Fargo — Providence","8 NB 5th Floor","Aspen Dental — Chelmsford MA",
+      "YNNH WH Geriatric Psych Reno — Westerly","Dr. Eric George Office",
+      "Eblens — Lawrence & Lowell MA","Goldman Commons","Hampton Inn — Auburn MA",
+      "Hampton Inn — Buzzards Bay","HGI — Warwick","Hope Artiste — Pawtucket RI",
+      "Jonquils Cafe — Boston","My Salon Suite","Nylo Hotel — Warwick RI",
+      "Planet Fitness — East Providence","Quidnesset Country Club","Sidney Cafe — Cranston",
+      "Target — Seekonk","Whirlpool — Fall River","Wrentham Outlets — Wrentham","Yardhouse",
+      "37 Coolidge Street","Morgan Stanley — CT","Dr. George — RI","Aspen Dental","Planet Fitness",
+      "Lawson Green Apartments","Residence Inn — Lincoln RI","Hudson MA","Boston College Archives",
+      "Diegos Restaurant — Providence","State Farm","Ferranti Residence — Lincoln RI",
+      "Peabody Terrace — Brookline MA","Starbucks — Seekonk","Kendall East — Boston MA",
+      "80 Central Street","Cresco — Fall River","Sweetgreen — KenSquare","Cava — Smithfield",
+      "Life Alive — Dedham","Union Twist — Framingham MA","Level 99 — Natick MA",
+      "Level 99 — Providence Place","Medtronic MA","Spicy MA","Lafayette Street MA",
+      "Beacon Mutual — Warwick RI","Aloft Providence","Warby Parker — Yale CT","Ascent MA",
+      "Bryant University RI","Delaney at The Vale — Woburn MA","Thayer Academy — Braintree MA",
+      "Life Alive — Davis","Supply NE — Warwick RI","Tesla — Boston","Kovalev Insurance",
+      "Bud & Mary — Stoughton MA","Five Iron Golf — Boston MA","Rosa Mexicana — MA",
+      "150 California Street — Newton MA","Showcase Cinema — Warwick","Oasis at Plymouth",
+      "North Smithfield Track and Field House","LL Bean — Mashpee","LL Bean MA",
+      "North Kingstown Home","Rosa Seaport","Gentex MA","Solar MA","Dana Hall School",
+      "31 Cross Street — NK RI","Wakefield Sport — RI","Cava Restaurant","Gentex — Norwood MA",
+      "Middleboro MA","Summerville School of Music","42 Thornton Way RI",
+      "Akira — Providence Place Mall","West House — Newport RI","HubSpot ICL Imaging",
+      "Chapel View Apartment RI","Westerly Museum RI","Regency Park Condos — Brookline MA",
+      "Milton Cat — Stoughton MA","Uniqlo — Providence","Yardhouse","Sonic RI",
+      "Whole Foods — Hyannis MA","Ann Taylor — Natick MA","Brown Athletics","Marc Jacobs",
+      "Blakely Hall — Tufts University","Little Sprout MA","Bright Path — Westford MA",
+      "Clark Silva","Twin City Plaza — Boston","DoubleTree Hotel — Burlington VT",
+      "Alta Kelly Blvd — North Attleboro"
+    ];
+
+    const DURATION = 2750;
+    const stage = document.getElementById('tickerStage');
+    const progress = document.getElementById('tickerProgress');
+    const playBtn = document.getElementById('tickerPlay');
+    const prevBtn = document.getElementById('tickerPrev');
+    const nextBtn = document.getElementById('tickerNext');
+    const dotsWrap = document.getElementById('tickerDots');
+    const countEl = document.getElementById('tickerCount');
+
+    countEl.textContent = projects.length + ' projects';
+
+    projects.forEach((p, i) => {
+      const el = document.createElement('div');
+      el.className = 'ticker-item';
+      el.innerHTML = `<span class="ticker-project-name">${p}</span><span class="ticker-project-index">${i + 1} / ${projects.length}</span>`;
+      stage.appendChild(el);
+      const dot = document.createElement('div');
+      dot.className = 'ticker-dot';
+      dotsWrap.appendChild(dot);
+    });
+
+    const items = stage.querySelectorAll('.ticker-item');
+    const dots = dotsWrap.querySelectorAll('.ticker-dot');
+    let current = 0, isPlaying = true, interval = null;
+
+    function showItem(idx) {
+      const prev = stage.querySelector('.active');
+      if (prev) { prev.classList.remove('active'); prev.classList.add('exit'); setTimeout(() => prev.classList.remove('exit'), 500); }
+      items[idx].classList.add('active');
+      dots.forEach(d => d.classList.remove('current'));
+      dots[idx].classList.add('current');
+      dots[idx].scrollIntoView({ block: 'nearest', inline: 'center' });
+    }
+
+    function startProgress() {
+      progress.style.transition = 'none';
+      progress.style.width = '0%';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        progress.style.transition = `width ${DURATION}ms linear`;
+        progress.style.width = '100%';
+      }));
+    }
+
+    function startAuto() {
+      clearInterval(interval);
+      interval = setInterval(() => { current = (current + 1) % projects.length; showItem(current); startProgress(); }, DURATION);
+      startProgress();
+    }
+
+    function stopAuto() {
+      clearInterval(interval);
+      progress.style.transition = 'none';
+      progress.style.width = '0%';
+    }
+
+    showItem(0);
+    startAuto();
+
+    playBtn.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      playBtn.textContent = isPlaying ? 'Pause' : 'Play';
+      isPlaying ? startAuto() : stopAuto();
+    });
+
+    prevBtn.addEventListener('click', () => { current = (current - 1 + projects.length) % projects.length; showItem(current); if (isPlaying) startAuto(); });
+    nextBtn.addEventListener('click', () => { current = (current + 1) % projects.length; showItem(current); if (isPlaying) startAuto(); });
   </script>
 
 </body>
