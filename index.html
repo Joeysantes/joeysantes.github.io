@@ -1015,7 +1015,7 @@
     </div><!-- /projects-grid -->
 
     <!-- TICKER -->
-    <div class="ticker-section reveal">
+    <div class="ticker-section">
       <p class="ticker-section-label">Full Portfolio</p>
       <h3 class="ticker-section-heading">Projects Completed</h3>
 
@@ -1268,7 +1268,6 @@
       items[idx].classList.add('active');
       dots.forEach(d => d.classList.remove('current'));
       dots[idx].classList.add('current');
-      dots[idx].scrollIntoView({ block: 'nearest', inline: 'center' });
     }
 
     function startProgress() {
