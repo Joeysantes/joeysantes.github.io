@@ -213,10 +213,11 @@
       margin-bottom: 3.5rem;
     }
 
+    /* ── PROJECT GRID (3-col mosaic) ── */
     .projects-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
       background: var(--light-line);
       margin-bottom: 5rem;
     }
@@ -230,11 +231,8 @@
 
     .project-img {
       width: 100%;
-      aspect-ratio: 16/7;
+      aspect-ratio: 4/3;
       background: var(--off-white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
       position: relative;
     }
@@ -244,20 +242,20 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      filter: brightness(0.88) saturate(0.85) sepia(0.25);
-      transition: filter 0.3s ease, transform 0.5s ease;
+      filter: brightness(0.88) saturate(0.85) sepia(0.2);
+      transition: filter 0.4s ease, transform 0.55s ease;
     }
 
-    .project-img img:hover {
+    .project-card:hover .project-img img {
       filter: brightness(1) saturate(1) sepia(0);
-      transform: scale(1.04);
+      transform: scale(1.06);
     }
 
     .project-img::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(200, 169, 110, 0.15);
+      background: rgba(200, 169, 110, 0.12);
       pointer-events: none;
       transition: opacity 0.3s ease;
     }
@@ -267,10 +265,10 @@
     .project-overlay {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      padding: 1.5rem;
-      background: linear-gradient(to top, rgba(20,18,14,0.85) 0%, transparent 100%);
+      padding: 1.25rem 1.25rem 1rem;
+      background: linear-gradient(to top, rgba(20,18,14,0.88) 0%, rgba(20,18,14,0.3) 60%, transparent 100%);
       opacity: 0;
-      transform: translateY(8px);
+      transform: translateY(6px);
       transition: all 0.3s ease;
     }
 
@@ -278,35 +276,44 @@
 
     .project-overlay-title {
       font-family: var(--serif);
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: #fff;
       font-weight: 400;
+      line-height: 1.2;
     }
 
     .project-overlay-scope {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       color: rgba(255,255,255,0.65);
       letter-spacing: 0.08em;
-      margin-top: 0.25rem;
+      margin-top: 0.2rem;
     }
 
     .project-meta {
-      padding: 1.25rem 1.5rem;
+      padding: 0.9rem 1.1rem;
       border-top: 1px solid var(--light-line);
     }
 
     .project-name {
       font-family: var(--serif);
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       font-weight: 500;
       color: var(--ink);
+      line-height: 1.3;
     }
 
     .project-detail {
-      font-size: 0.75rem;
+      font-size: 0.68rem;
       color: var(--mid);
-      letter-spacing: 0.06em;
-      margin-top: 0.2rem;
+      letter-spacing: 0.05em;
+      margin-top: 0.15rem;
+    }
+
+    @media (max-width: 900px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px) {
+      .projects-grid { grid-template-columns: 1fr; }
     }
 
     /* ── TICKER ── */
@@ -735,8 +742,8 @@
     <a href="#home" class="nav-logo">Joey Santes</a>
     <ul class="nav-links">
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#services">What I Offer</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -1036,10 +1043,52 @@
 
   </section>
 
+  <!-- SERVICES (What I Offer) -->
+  <section id="services">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">What I Offer</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="services-intro reveal">Whether you need detail-driven estimating, bidding, prequalification, consulting, or project management help — here is how I can help.</p>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <div class="service-name">Estimating</div>
+        <p class="service-desc">Accurate, competitive estimates built from thorough takeoffs and real material and labor data. I prepare proposals that are tight, defensible, and built to win work without leaving money on the table or setting unrealistic expectations.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <div class="service-name">Bidding Process & Follow-Up</div>
+        <p class="service-desc">From the initial bid invite through updated plan sets, RFI responses, and leveling — I manage the full bid cycle. I track addenda, follow up with the GC or owner, and stay engaged through the award so nothing falls through the cracks.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <div class="service-name">Prequalification</div>
+        <p class="service-desc">I handle the full prequalification process — assembling documentation, completing GC and owner preq packages, and positioning your company to get on the right bid lists and stay there.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">04</span>
+        <div class="service-name">Project Management</div>
+        <p class="service-desc">End-to-end oversight of commercial painting projects — from pre-construction coordination to punch-list closeout. I keep crews on schedule, subs accountable, and clients informed at every phase.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">05</span>
+        <div class="service-name">Site Coordination</div>
+        <p class="service-desc">On-site leadership and subcontractor management that keeps painting scopes running clean alongside other trades. I resolve conflicts fast and protect your schedule.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">06</span>
+        <div class="service-name">Consulting</div>
+        <p class="service-desc">Need a second set of eyes on a bid, a project plan, or a scope of work? I'm available for short-term consulting engagements for painting contractors and general contractors alike.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT -->
   <section id="about">
     <div class="section-header reveal">
-      <span class="section-num">02</span>
+      <span class="section-num">03</span>
       <h2 class="section-title">About Joey</h2>
       <div class="section-line"></div>
     </div>
@@ -1049,7 +1098,7 @@
       </div>
       <div class="about-content reveal">
         <h3>Meet Joey Santes.<br><em>Built on hard work.</em><br>Driven by relationships.</h3>
-        <p>I'm Joey Santes, a commercial painting estimator and project manager with over a decade of hands-on experience delivering large-scale painting projects on time, on budget, and to spec. My work spans office buildings, retail centers, industrial facilities, healthcare campuses, and municipal structures.</p>
+        <p>I'm Joey Santes, a commercial painting estimator and project manager with over 18 years of hands-on experience delivering small, mid-size, and large-scale painting projects on time, on budget, and to spec. My work spans office buildings, retail centers, industrial facilities, healthcare campuses, and municipal structures.</p>
         <p>I got into this field because I believe great results come from precision and teamwork, building on relationships from the bid invite, to the site, and in the execution. I believe every problem can be solved with the right team around you, a clear plan, and the end result always in mind.</p>
         <p>Whether I am working as an estimator, consultant, or PM for a general contractor or developer, my commitment is the same — doing the work diligently, clear communication, meticulous documentation, and providing a finished product that speaks for itself.</p>
         <div class="about-divider"></div>
@@ -1065,48 +1114,6 @@
           <div class="skill-item"><div class="skill-dot"></div>Spec & Submittal Review</div>
           <div class="skill-item"><div class="skill-dot"></div>Safety Compliance</div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="section-header reveal">
-      <span class="section-num">03</span>
-      <h2 class="section-title">What I Offer</h2>
-      <div class="section-line"></div>
-    </div>
-    <p class="services-intro reveal">Whether you need a detail-driven PM on your team or an experienced estimator to win more work — here's how I can help.</p>
-    <div class="services-grid reveal">
-      <div class="service-card">
-        <span class="service-num">01</span>
-        <div class="service-name">Project Management</div>
-        <p class="service-desc">End-to-end oversight of commercial painting projects — from pre-construction coordination to punch-list closeout. I keep crews on schedule, subs accountable, and clients informed at every phase.</p>
-      </div>
-      <div class="service-card">
-        <span class="service-num">02</span>
-        <div class="service-name">Estimating & Bidding</div>
-        <p class="service-desc">Accurate, competitive bids built from thorough takeoffs and real material and labor data. I prepare proposals that win work without leaving money on the table or setting unrealistic expectations.</p>
-      </div>
-      <div class="service-card">
-        <span class="service-num">03</span>
-        <div class="service-name">Site Coordination</div>
-        <p class="service-desc">On-site leadership and subcontractor management that keeps painting scopes running clean alongside other trades. I resolve conflicts fast and protect your schedule.</p>
-      </div>
-      <div class="service-card">
-        <span class="service-num">04</span>
-        <div class="service-name">Specification Review</div>
-        <p class="service-desc">Deep-dive review of painting specs, submittals, and product data sheets to ensure the right systems are specified, approved, and installed correctly the first time.</p>
-      </div>
-      <div class="service-card">
-        <span class="service-num">05</span>
-        <div class="service-name">Budget & Cost Control</div>
-        <p class="service-desc">Proactive tracking of project costs against budget — identifying variances early and implementing corrective action before small overruns become real problems.</p>
-      </div>
-      <div class="service-card">
-        <span class="service-num">06</span>
-        <div class="service-name">Consulting</div>
-        <p class="service-desc">Need a second set of eyes on a bid, a project plan, or a scope of work? I'm available for short-term consulting engagements for painting contractors and general contractors alike.</p>
       </div>
     </div>
   </section>
@@ -1164,6 +1171,7 @@
     <div class="footer-copy">© 2026 Joey Santes. All rights reserved.</div>
     <div class="footer-links">
       <a href="#home">Home</a>
+      <a href="#services">What I Offer</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </div>
